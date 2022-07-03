@@ -1,9 +1,9 @@
 '''
-================SAIFALISEW1508=====================
-Telegram members adding script
-Coded by a kid- github.com/saifalisew1508
-Apologies if anything in the code is dumb :)
-Copy with credits
+================MEYİTZADE47=====================
+Telgraf üyeleri komut dosyası ekliyor
+Bir çocuk tarafından kodlanmıştır- github.com/01-Meyitzade-01
+Koddaki herhangi bir şey çalışmazsa özür dilerim :)
+Kredi ile kopyalayın
 ************************************************
 '''
 
@@ -52,8 +52,8 @@ def banner():
     ]
     for char in b:
         print(f'{random.choice(colors)}{char}{rs}')
-    #print('=============SAIFALISEW1508==============')
-    print(f'{lg}Version: {w}2.0:latest{lg} | Author: {w}saifalisew1508{rs}')
+    #print('=============MEYİTZADE47==============')
+    print(f'{lg}Version: {w}2.0:latest{lg} | Author: {w}Meyitzade47{rs}')
 
 
 # function to clear screen
@@ -73,10 +73,10 @@ while True:
 
 # create sessions(if any) and check for any banned accounts
 # TODO: Remove code input(just to check if an account is banned)
-print('\n' + info + lg + ' Checking for banned accounts...' + rs)
+print('\n' + info + lg + ' Engellenen hesapları kontrol etme...' + rs)
 for a in accounts:
     phn = a[0]
-    print(f'{plus}{grey} Checking {lg}{phn}')
+    print(f'{plus}{grey} Kontrol etme {lg}{phn}')
     clnt = TelegramClient(f'sessions/{phn}', 3910389, '86f861352f0ab76a251866059a6adbd6')
     clnt.connect()
     banned = []
@@ -89,12 +89,12 @@ for a in accounts:
             banned.append(a)
     for z in banned:
         accounts.remove(z)
-        print(info+lg+' Banned account removed[Remove permanently using manager.py]'+rs)
+        print(info+lg+' Yasaklanan hesap kaldırıldı[ manager.py kullanarak kalıcı olarak kaldırın]'+rs)
     time.sleep(0.5)
     clnt.disconnect()
 
 
-print(info+' Sessions created!')
+print(info+' Oturumlar oluşturuldu!')
 clr()
 banner()
 # func to log scraping details(link of the grp to scrape
@@ -107,7 +107,7 @@ def log_status(scraped, index):
     
 
 def exit_window():
-    input(f'\n{cy} Press enter to exit...')
+    input(f'\n{cy} Çıkmak için enter'a basın...')
     clr()
     banner()
     sys.exit()
@@ -118,7 +118,7 @@ try:
     with open('status.dat', 'rb') as f:
         status = pickle.load(f)
         f.close()
-        lol = input(f'{INPUT}{cy} Resume scraping members from {w}{status[0]}{lg}? [y/n]: {r}')
+        lol = input(f'{INPUT}{cy} Üyeleri şuradan kazımaya devam et: {w}{status[0]}{lg}? [y/n]: {r}')
         if 'y' in lol:
             scraped_grp = status[0] ; index = int(status[1])
         else:
@@ -126,10 +126,10 @@ try:
                 os.system('del status.dat')
             else: 
                 os.system('rm status.dat')
-            scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
+            scraped_grp = input(f'{INPUT}{cy} Üyeleri çekmek için Genel/Özel grup bağlantısı: {r}')
             index = 0
 except:
-    scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
+    scraped_grp = input(f'{INPUT}{cy} Üyeleri çekmek için Genel/Özel grup bağlantısı: {r}')
     index = 0
 # load all the accounts(phonenumbers)
 accounts = []
@@ -141,17 +141,17 @@ while True:
         break
 
 print(f'{info}{lg} Total accounts: {w}{len(accounts)}')
-number_of_accs = int(input(f'{INPUT}{cy} Enter number of accounts to use: {r}'))
+number_of_accs = int(input(f'{INPUT}{cy} Kullanılacak hesap sayısını girin: {r}'))
 print(f'{info}{cy} Choose an option{lg}')
-print(f'{cy}[0]{lg} Add to public group')
-print(f'{cy}[1]{lg} Add to private group')
-choice = int(input(f'{INPUT}{cy} Enter choice: {r}'))
+print(f'{cy}[0]{lg} Herkese açık gruba ekle')
+print(f'{cy}[1]{lg} Özel gruba ekle')
+choice = int(input(f'{INPUT}{cy} Seçimi girin: {r}'))
 if choice == 0:
-    target = str(input(f'{INPUT}{cy} Enter public group link: {r}'))
+    target = str(input(f'{INPUT}{cy} Herkese açık grup bağlantısını girin: {r}'))
 else:
-    target = str(input(f'{INPUT}{cy} Enter private group link: {r}'))
+    target = str(input(f'{INPUT}{cy} Özel grup bağlantısını girin: {r}'))
 print(f'{grey}_'*50)
-#status_choice = str(input(f'{INPUT}{cy} Do you wanna add active members?[y/n]: {r}'))
+#status_choice = str(input(f'{INPUT}{cy} Aktif üyeler eklemek istiyor musunuz??[y/n]: {r}'))
 to_use = [x for x in accounts[:number_of_accs]]
 for l in to_use: accounts.remove(l)
 with open('vars.txt', 'wb') as f:
@@ -161,15 +161,15 @@ with open('vars.txt', 'wb') as f:
         pickle.dump(ab, f)
     f.close()
 sleep_time = int(input(f'{INPUT}{cy} Enter delay time per request{w}[{lg}0 for None{w}]: {r}'))
-#print(f'{info}{lg} Joining group from {w}{number_of_accs} accounts...')
+#print(f'{info}{lg} gruba katılma {w}{number_of_accs} hesaplar...')
 #print(f'{grey}-'*50)
-print(f'{success}{lg} -- Adding members from {w}{len(to_use)}{lg} account(s) --')
+print(f'{success}{lg} -- Şuradan üye ekleme {w}{len(to_use)}{lg} hesap(s) --')
 adding_status = 0
 approx_members_count = 0
 for acc in to_use:
     stop = index + 60
     c = TelegramClient(f'sessions/{acc[0]}', 3910389 , '86f861352f0ab76a251866059a6adbd6')
-    print(f'{plus}{grey} User: {cy}{acc[0]}{lg} -- {cy}Starting session... ')
+    print(f'{plus}{grey} User: {cy}{acc[0]}{lg} -- {cy}Oturumu başlatma... ')
     c.start(acc[0])
     acc_name = c.get_me().first_name
     try:
@@ -177,32 +177,32 @@ for acc in to_use:
             g_hash = scraped_grp.split('/joinchat/')[1]
             try:
                 c(ImportChatInviteRequest(g_hash))
-                print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- Joined group to scrape')
+                print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- üye çekmek için gruba katıldı')
             except UserAlreadyParticipantError:
                 pass 
         else:
             c(JoinChannelRequest(scraped_grp))
-            print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- Joined group to scrape')
+            print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- üye çekmek için gruba katıldı')
         scraped_grp_entity = c.get_entity(scraped_grp)
         if choice == 0:
             c(JoinChannelRequest(target))
-            print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- Joined group to add')
+            print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- Eklemek için gruba katıldı')
             target_entity = c.get_entity(target)
             target_details = InputPeerChannel(target_entity.id, target_entity.access_hash)
         else:
             try:
                 grp_hash = target.split('/joinchat/')[1]
                 c(ImportChatInviteRequest(grp_hash))
-                print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- Joined group to add')
+                print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- Eklemek için gruba katıldı')
             except UserAlreadyParticipantError:
                 pass
             target_entity = c.get_entity(target)
             target_details = target_entity
     except Exception as e:
-        print(f'{error}{r} User: {cy}{acc_name}{lg} -- Failed to join group')
+        print(f'{error}{r} User: {cy}{acc_name}{lg} -- Gruba katılamadı')
         print(f'{error} {r}{e}')
         continue
-    print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- {cy}Retrieving entities...')
+    print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- {cy}Varlıkları alma...')
     #c.get_dialogs()
     try:
         members = []
@@ -214,7 +214,7 @@ for acc in to_use:
     approx_members_count = len(members)
     assert approx_members_count != 0
     if index >= approx_members_count:
-        print(f'{error}{lg} No members to add!')
+        print(f'{error}{lg} Eklenecek üye yok!')
         continue
     print(f'{info}{lg} Start: {w}{index}')
     #adding_status = 0
@@ -222,7 +222,7 @@ for acc in to_use:
     for user in members[index:stop]:
         index += 1
         if peer_flood_status == 10:
-            print(f'{error}{r} Too many Peer Flood Errors! Closing session...')
+            print(f'{error}{r} Çok fazla Peer Flood Hatası! kapanış oturumu...')
             break
         try:
             if choice == 0:
@@ -234,28 +234,28 @@ for acc in to_use:
             print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- {cy}{user_id} {lg}--> {cy}{target_title}')
             #print(f'{info}{grey} User: {cy}{acc_name}{lg} -- Sleep 1 second')
             adding_status += 1
-            print(f'{info}{grey} User: {cy}{acc_name}{lg} -- Sleep {w}{sleep_time} {lg}second(s)')
+            print(f'{info}{grey} User: {cy}{acc_name}{lg} -- Uyumak {w}{sleep_time} {lg}second(s)')
             time.sleep(sleep_time)
         except UserPrivacyRestrictedError:
-            print(f'{minus}{grey} User: {cy}{acc_name}{lg} -- {r}User Privacy Restricted Error')
+            print(f'{minus}{grey} User: {cy}{acc_name}{lg} -- {r}Kullanıcı Gizliliği Kısıtlı Hatası')
             continue
         except PeerFloodError:
-            print(f'{error}{grey} User: {cy}{acc_name}{lg} -- {r}Peer Flood Error.')
+            print(f'{error}{grey} User: {cy}{acc_name}{lg} -- {r}Flood Taşması Hatası.')
             peer_flood_status += 1
             continue
         except ChatWriteForbiddenError:
-            print(f'{error}{r} Can\'t add to group. Contact group admin to enable members adding')
+            print(f'{error}{r} Gruba eklenemiyor. Üye eklemeyi etkinleştirmek için grup yöneticisiyle iletişime geçin')
             if index < approx_members_count:
                 log_status(scraped_grp, index)
             exit_window()
         except UserBannedInChannelError:
-            print(f'{error}{grey} User: {cy}{acc_name}{lg} -- {r}Banned from writing in groups')
+            print(f'{error}{grey} User: {cy}{acc_name}{lg} -- {r}Gruplarda yazma yasağı')
             break
         except ChatAdminRequiredError:
-            print(f'{error}{grey} User: {cy}{acc_name}{lg} -- {r}Chat Admin rights needed to add')
+            print(f'{error}{grey} User: {cy}{acc_name}{lg} -- {r}Eklemek için Sohbet Yöneticisi hakları gerekli')
             break
         except UserAlreadyParticipantError:
-            print(f'{minus}{grey} User: {cy}{acc_name}{lg} -- {r}User is already a participant')
+            print(f'{minus}{grey} User: {cy}{acc_name}{lg} -- {r}Kullanıcı zaten bir katılımcı')
             continue
         except FloodWaitError as e:
             print(f'{error}{r} {e}')
@@ -264,7 +264,7 @@ for acc in to_use:
             print(f'{error}{r} Error in Entity')
             continue
         except KeyboardInterrupt:
-            print(f'{error}{r} ---- Adding Terminated ----')
+            print(f'{error}{r} ---- Ekleme Sonlandırılmış ----')
             if index < len(members):
                 log_status(scraped_grp, index)
             exit_window()
@@ -273,7 +273,7 @@ for acc in to_use:
             continue
 #global adding_status, approx_members_count
 if adding_status != 0:
-    print(f"\n{info}{lg} Adding session ended")
+    print(f"\n{info}{lg} Ekleme oturumu sona erdi")
 try:
     if index < approx_members_count:
         log_status(scraped_grp, index)
